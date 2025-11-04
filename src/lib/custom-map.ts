@@ -3,10 +3,8 @@ import { createRoot, type Root } from "react-dom/client";
 import { createElement } from "react";
 import { type LocationItem } from "~/app/common/locations";
 import { useMapStore } from "~/app/_state/map.store";
-import { useNewLocationStore } from "~/app/_state/new-location.store";
 import { useUIStore } from "~/app/_state/ui.store";
 import { PopupContent } from "~/app/components/map/PopupContent";
-import posthog from "posthog-js";
 import { youtubeIcon } from "./icons/youtubeIcon";
 import { douyinIcon } from "./icons/douyinIcon";
 
@@ -122,7 +120,6 @@ function createPopupContent(data: LocationItem) {
 }
 
 function editPlace(data: LocationItem) {
-  useNewLocationStore.getState().setEditLocation(data);
   useUIStore.getState().setNewLocationModalOpen(true);
 }
 

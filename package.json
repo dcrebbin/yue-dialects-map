@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "tsx scripts/generate-llms.ts",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",

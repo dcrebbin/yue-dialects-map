@@ -1,24 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { LocationItem, LOCATIONS } from "./common/locations";
+import { LOCATIONS } from "./common/locations";
 import { useMapStore } from "./_state/map.store";
 import Appbar from "./components/appbar";
-import Footer from "./components/footer";
-import Menu from "./components/menu";
 import { addPlace } from "~/lib/custom-map";
-import { useUIStore } from "./_state/ui.store";
 import { geoJson } from "~/lib/geojson";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGNyZWJiaW4iLCJhIjoiY20xMjFtYnc0MHh4ZjJrb2h2NDR5MjF6YyJ9.LOAauCyTV_pfMAYd08pTmg";
 
-export default function Home({ location }: { location: LocationItem }) {
+export default function Home() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
-
-  const { gameOpen } = useUIStore();
 
   const { map, setMap } = useMapStore();
 
@@ -61,19 +56,10 @@ export default function Home({ location }: { location: LocationItem }) {
     });
   };
 
-  useEffect(() => {
-    if (!map) return;
-    if (location) {
-      map.setCenter([location.lng, location.lat]);
-      map.setZoom(15);
-    }
-  }, [map, location]);
-
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden">
       <div className="relative flex h-[100vh] w-[100vw] overflow-hidden">
         <Appbar />
-        <Footer />
         <div ref={handleMapContainerRef} className="map-container relative" />
         <style jsx>{`
           .map-container {

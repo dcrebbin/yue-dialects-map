@@ -158,7 +158,7 @@ export const SLUG_LOCATIONS = Object.entries(RAW_LOCATIONS).map(
 // Validate and normalize at module load; throws early if data is invalid
 export const LOCATIONS: LocationItem[] = z
   .array(LocationItemSchema)
-  .parse(RAW_LOCATIONS);
+  .parse(Object.values(RAW_LOCATIONS));
 
 export function extractContributorNamesFromLocation(
   location: LocationItem,

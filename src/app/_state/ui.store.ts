@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ARTISTS, SONGS, CONTRIBUTORS } from "../common/locations";
+import { CONTRIBUTORS } from "../common/locations";
 
 interface UIState {
   menuOpen: boolean;
@@ -59,12 +59,12 @@ export const useUIStore = create<UIState>((set) => ({
   selectedSongs: [],
   setSelectedSongs: (songs: { name: string; artists: string[] }[]) =>
     set({ selectedSongs: songs }),
-  filteredArtists: ARTISTS,
+  filteredArtists: [],
   setFilteredArtists: (artists: string[]) => set({ filteredArtists: artists }),
-  filteredSongs: SONGS,
+  filteredSongs: [],
   setFilteredSongs: (songs: { name: string; artists: string[] }[]) =>
     set({ filteredSongs: songs }),
-  filteredContributors: CONTRIBUTORS,
+  filteredContributors: [],
   setFilteredContributors: (contributors: string[]) =>
     set({ filteredContributors: contributors }),
   newLocationModalOpen: false,
