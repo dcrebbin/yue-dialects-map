@@ -12,6 +12,44 @@ const markerRoots = new WeakMap<HTMLDivElement, Root>();
 const popupRoots = new WeakMap<mapboxgl.Popup, Root>();
 const elementRoots = new WeakMap<HTMLElement, Root>();
 
+function createTextMarker(data: any) {
+  const markerElement = document.createElement("div");
+  markerElement.className =
+    "flex flex-col items-center justify-center gap-1 bg-white rounded-md p-2 shadow-md min-w-[40px] text-black text-center text-[13px] truncate";
+
+  const markerRoot = createRoot(markerElement);
+  markerRoots.set(markerElement, markerRoot);
+
+  markerRoot.render(
+    createElement(
+      "div",
+      {
+        className: "flex flex-col items-center w-full relative",
+      },
+      createElement(
+        "span",
+        {
+          className: "text-black text-center text-[13px] truncate",
+          title: data.dialect.chineseName,
+        },
+        data.dialect.chineseName,
+      ),
+      createElement(
+        "span",
+        {
+          className: "text-black text-center text-[9px] truncate",
+          title: data.dialect.englishName,
+        },
+        data.dialect.englishName,
+      ),
+    ),
+  );
+  markerElement.dataset.dialect = data.dialect.chineseName;
+  markerElement.style.marginTop = "40px";
+
+  return markerElement;
+}
+
 function createCustomMarker(
   popup: mapboxgl.Popup,
   data: LocationItem,
@@ -67,6 +105,18 @@ function createCustomMarker(
   markerElement.dataset.dialect = data.dialect.chineseName;
   markerElement.style.marginTop = "40px";
 
+  return markerElement;
+}
+
+export function addMarker(data: any, mapInstance?: mapboxgl.Map) {
+  const markerElement = createTextMarker(data);
+  if (!mapInstance) return;
+  new mapboxgl.Marker({
+    element: markerElement,
+    anchor: "bottom",
+  })
+    .setLngLat([data.lng, data.lat])
+    .addTo(mapInstance);
   return markerElement;
 }
 

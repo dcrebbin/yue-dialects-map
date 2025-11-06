@@ -8,18 +8,18 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
-  title: "Cantopop Map | 粵語歌地圖 🇭🇰",
-  description: "Find the locations for your favourite cantopop songs",
-  applicationName: "cantopop地圖",
+  title: "Yue Map | 粵地圖",
+  description: "Cantonese dialects map",
+  applicationName: "Yue Map",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "cantopop地圖",
+    title: "Yue Map",
   },
   icons: [
-    { rel: "icon", url: "/images/favicon.svg" },
-    { rel: "apple-touch-icon", url: "/icons/icon-192x192.png" },
+    { rel: "icon", url: "/images/favicon.png" },
+    { rel: "apple-touch-icon", url: "/images/favicon.png" },
   ],
   openGraph: {
     images: ["/images/og-image.png"],

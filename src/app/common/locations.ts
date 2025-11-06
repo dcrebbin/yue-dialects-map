@@ -1,51 +1,131 @@
 import { z } from "zod";
 
+const DIALECT_GROUPS = {
+  yuehai: {
+    chineseName: "粵海",
+    englishName: "Yuehai Yue",
+  },
+  guanbao: {
+    chineseName: "莞寶",
+    englishName: "Guanbao",
+  },
+  zhongshan: {
+    chineseName: "中山",
+    englishName: "Zhongshan",
+  },
+  qinlian: {
+    chineseName: "欽廉语言",
+    englishName: "Qin-Lian Yue",
+  },
+  yongxun: {
+    chineseName: "欽廉语言",
+    englishName: "Yong-Xun Yue ",
+  },
+  wuhua: {
+    chineseName: "吳化方言",
+    englishName: "Wu-Hua Yue",
+  },
+  gaoyang: {
+    chineseName: "高陽方言",
+    englishName: "Gao-Yang Yue",
+  },
+  siyi: {
+    chineseName: "四邑方言",
+    englishName: "Siyi",
+  },
+};
+
 const DIALECTS = {
   guangzhouDialect: {
     chineseName: "廣州話",
     englishName: "Guangzhou Dialect",
+    groups: [DIALECT_GROUPS.yuehai],
   },
   weitouDialect: {
     chineseName: "圍頭話",
     englishName: "Weitou Dialect",
+    groups: [DIALECT_GROUPS.guanbao, DIALECT_GROUPS.yuehai],
   },
   shiqiDialect: {
     chineseName: "石岐話",
     englishName: "Shiqi Dialect",
+    groups: [DIALECT_GROUPS.zhongshan, DIALECT_GROUPS.yuehai],
   },
   beihaiDialect: {
     chineseName: "北海話",
     englishName: "Beihai Dialect",
+    groups: [DIALECT_GROUPS.qinlian],
   },
   nanningDialect: {
     chineseName: "南寧話",
     englishName: "Nanning Dialect",
+    groups: [DIALECT_GROUPS.yongxun],
   },
   huazhouDialect: {
     chineseName: "化州話",
     englishName: "Huazhou Dialect",
+    groups: [DIALECT_GROUPS.wuhua],
   },
   gaozhouDialect: {
     chineseName: "高州話",
     englishName: "Gaozhou Dialect",
+    groups: [DIALECT_GROUPS.gaoyang],
   },
   taishanDialect: {
     chineseName: "臺山話",
     englishName: "Taishanese",
+    groups: [DIALECT_GROUPS.siyi],
   },
   lianzhouDialect: {
     chineseName: "廉州話",
     englishName: "Lianzhou Dialect",
+    groups: [DIALECT_GROUPS.qinlian],
   },
   yulinDialect: {
     chineseName: "玉林話",
     englishName: "Yulin Dialect",
+    groups: [DIALECT_GROUPS.yongxun],
   },
   sanDiuLanguage: {
     chineseName: "山由話",
     englishName: "San Diu Language",
   },
 };
+
+export const DIALECT_MARKERS_DATA = [
+  {
+    coordinates: [23.038044373715156, 113.7254461371941],
+    dialect: DIALECT_GROUPS.yuehai,
+  },
+  {
+    coordinates: [23.5203, 111.2942],
+    dialect: DIALECT_GROUPS.yuehai,
+  },
+  {
+    coordinates: [21.8958, 111.3394],
+    dialect: DIALECT_GROUPS.gaoyang,
+  },
+  {
+    coordinates: [23.4052, 110.0826],
+    dialect: DIALECT_GROUPS.yongxun,
+  },
+  {
+    coordinates: [22.798, 107.6819],
+    dialect: DIALECT_GROUPS.yongxun,
+  },
+  {
+    coordinates: [22.1103, 112.719],
+    dialect: DIALECT_GROUPS.siyi,
+  },
+  {
+    coordinates: [21.2692, 110.4879],
+    dialect: DIALECT_GROUPS.wuhua,
+  },
+  {
+    coordinates: [21.8973, 109.0052],
+    dialect: DIALECT_GROUPS.wuhua,
+  },
+];
 
 const RawLocationSchema = z.object({
   coordinates: z.tuple([z.number(), z.number()]), // [lat, lng] as authored
@@ -95,7 +175,7 @@ const RAW_LOCATIONS: Record<string, RawLocationSchema> = {
     dialect: DIALECTS.shiqiDialect,
   },
   qpHT7mdNQek: {
-    coordinates: [22.52225, 113.36174],
+    coordinates: [21.47912943036413, 109.11957866391941],
     url: "https://www.youtube.com/watch?v=qpHT7mdNQek",
     image: "https://i.ytimg.com/vi/qpHT7mdNQek/sddefault.jpg",
     dialect: DIALECTS.beihaiDialect,
@@ -108,7 +188,7 @@ const RAW_LOCATIONS: Record<string, RawLocationSchema> = {
     dialect: DIALECTS.nanningDialect,
   },
   paciFFXHZrU: {
-    coordinates: [23.108957, 114.406594],
+    coordinates: [21.662800811056627, 110.63091782604101],
     url: "https://v.douyin.com/paciFFXHZrU/",
     image:
       "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/3326f85946d2453486793b247b17ecf0_1647352204~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_PUBLISH&sc=cover&se=true&sh=323_430&x-expires=2077509600&x-signature=ze2dLE%2FcRFNzPgqqIN%2FZRdUH91Q%3D",
@@ -128,20 +208,20 @@ const RAW_LOCATIONS: Record<string, RawLocationSchema> = {
     dialect: DIALECTS.taishanDialect,
   },
   q5e3T8Lb6No: {
-    coordinates: [21.481047, 109.110406],
+    coordinates: [21.65983394756345, 109.20744105148923],
     url: "https://v.douyin.com/q5e3T8Lb6No/",
     image:
       "https://p3-pc-sign.douyinpic.com/tos-cn-p-0015/522eb691ad3546f7a62facf9be428170_1647855120~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_PUBLISH&sc=cover&se=true&sh=323_430&x-expires=2077509600&x-signature=39YBYCugu%2FrO9iSpnoyL%2BRtsubM%3D",
     dialect: DIALECTS.lianzhouDialect,
   },
   sfC1bN8T4IQ: {
-    coordinates: [21.481047, 109.110406],
+    coordinates: [22.641111542728165, 110.16677502157579],
     url: "https://www.youtube.com/watch?v=sfC1bN8T4IQ",
     image: "https://i.ytimg.com/vi/sfC1bN8T4IQ/mqdefault.jpg",
     dialect: DIALECTS.yulinDialect,
   },
   "1V1lXZN3AXo": {
-    coordinates: [21.59459, 105.841933],
+    coordinates: [21.418733759806173, 105.6235385345078],
     url: "https://v.douyin.com/1V1lXZN3AXo/",
     image:
       "https://p3-pc-sign.douyinpic.com/tos-cn-i-0629/oUBwAC0d7iDATTgAE0iB7AfkIAsSQQYMgBsFBq~tplv-dy-cropcenter:323:430.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_PUBLISH&sc=cover&se=true&sh=323_430&x-expires=2077509600&x-signature=yMl1z%2FO88gFjyc8sRmqz3Du1IF4%3D",
@@ -159,6 +239,28 @@ export const SLUG_LOCATIONS = Object.entries(RAW_LOCATIONS).map(
 export const LOCATIONS: LocationItem[] = z
   .array(LocationItemSchema)
   .parse(Object.values(RAW_LOCATIONS));
+
+type DialectMarker = z.infer<typeof DialectMarkerSchema>;
+
+const RawDialectMarkerSchema = z.object({
+  coordinates: z.tuple([z.number(), z.number()]), // [lat, lng] as authored
+  dialect: z.object({
+    chineseName: z.string(),
+    englishName: z.string(),
+  }),
+});
+
+export const DialectMarkerSchema = RawDialectMarkerSchema.transform((raw) => {
+  return {
+    lat: raw.coordinates[0],
+    lng: raw.coordinates[1],
+    dialect: raw.dialect,
+  };
+});
+
+export const DIALECT_MARKERS: DialectMarker[] = z
+  .array(DialectMarkerSchema)
+  .parse(Object.values(DIALECT_MARKERS_DATA));
 
 export function extractContributorNamesFromLocation(
   location: LocationItem,

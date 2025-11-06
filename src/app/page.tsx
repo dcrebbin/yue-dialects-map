@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { LOCATIONS } from "./common/locations";
+import { DIALECT_MARKERS, LOCATIONS } from "./common/locations";
 import { useMapStore } from "./_state/map.store";
 import Appbar from "./components/appbar";
-import { addPlace } from "~/lib/custom-map";
+import { addMarker, addPlace } from "~/lib/custom-map";
 import { geoJson } from "~/lib/geojson";
 
 mapboxgl.accessToken =
@@ -51,6 +51,10 @@ export default function Home() {
     });
 
     setMap(newMap);
+    DIALECT_MARKERS.forEach((marker) => {
+      addMarker(marker, newMap);
+    });
+
     LOCATIONS.forEach((location) => {
       addPlace(location, newMap);
     });
