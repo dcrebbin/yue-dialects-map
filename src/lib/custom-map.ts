@@ -15,7 +15,7 @@ const elementRoots = new WeakMap<HTMLElement, Root>();
 function createTextMarker(data: any) {
   const markerElement = document.createElement("div");
   markerElement.className =
-    "flex flex-col items-center justify-center gap-1 bg-white rounded-md p-2 shadow-md min-w-[40px] text-black text-center text-[13px] truncate";
+    "flex flex-col items-center justify-center font-[Cute] gap-1 bg-white rounded-md p-2 shadow-md min-w-[40px] text-black text-center text-[17px] truncate";
 
   const markerRoot = createRoot(markerElement);
   markerRoots.set(markerElement, markerRoot);
@@ -29,7 +29,7 @@ function createTextMarker(data: any) {
       createElement(
         "span",
         {
-          className: "text-black text-center text-[13px] truncate",
+          className: "text-black text-center text-[17px] truncate",
           title: data.dialect.chineseName,
         },
         data.dialect.chineseName,
@@ -37,7 +37,7 @@ function createTextMarker(data: any) {
       createElement(
         "span",
         {
-          className: "text-black text-center text-[9px] truncate",
+          className: "text-black text-center text-[17px] truncate",
           title: data.dialect.englishName,
         },
         data.dialect.englishName,
@@ -57,7 +57,7 @@ function createCustomMarker(
 ) {
   const markerElement = document.createElement("div");
   markerElement.className =
-    "flex flex-col items-center justify-center gap-1 bg-white rounded-md p-2 shadow-md min-w-[70px]";
+    "flex flex-col items-center justify-center font-[Cute] gap-1 bg-white rounded-md p-2 shadow-md min-w-[70px]";
 
   const markerRoot = createRoot(markerElement);
   markerRoots.set(markerElement, markerRoot);
@@ -86,7 +86,7 @@ function createCustomMarker(
         "span",
         {
           className:
-            "block w-full text-center text-[13px] text-black mt-1 truncate",
+            "block w-full text-center text-[17px] text-black mt-1 truncate",
           title: data.dialect.chineseName,
         },
         data.dialect.chineseName,
@@ -95,7 +95,7 @@ function createCustomMarker(
         "span",
         {
           className:
-            "block w-full text-center text-[9px] text-black mt-1 truncate",
+            "block w-full text-center text-[17px] text-black mt-1 truncate",
           title: data.dialect.englishName,
         },
         data.dialect.englishName,
