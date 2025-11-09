@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     { rel: "apple-touch-icon", url: "/images/favicon.png" },
   ],
   openGraph: {
-    images: ["/images/og-image-yue.png"],
+    images: [`${siteUrl}/images/og-image-yue.png`],
   },
 };
 
